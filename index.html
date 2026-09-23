@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹으로 연결하는 나의 성과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); padding: 2rem 1rem; }
+        .header { text-align: center; margin-bottom: 2rem; }
+        .header h1 { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e0e7ff; padding-bottom: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+        .card-title { font-size: 1.25rem; font-weight: bold; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .badge { background: var(--primary); color: white; padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.85rem; }
+        .btn-group { display: flex; gap: 0.5rem; }
+        .btn { padding: 0.5rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid var(--border); background: #fff; color: var(--text-dark); cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; transition: background 0.2s; }
+        .btn:hover { background: #f1f5f9; }
+        .btn-primary { background: var(--primary); color: white; border: none; }
+        .btn-primary:hover { background: #4338ca; }
+        .preview-box { display: none; margin-top: 1rem; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; height: 500px; background: #f1f5f9; }
+        .preview-box iframe, .preview-box img { width: 100%; height: 100%; border: none; object-fit: contain; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1><i class="fa-solid fa-graduation-cap"></i> 웹으로 연결하는 나의 성과</h1>
+        <p>소프트웨어와 생활 수행평가 포트폴리오</p>
+    </div>
+
+    <div class="container">
+
+        <!-- 01. 웹프로그래밍 문항 제작 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span class="badge">01</span> 웹프로그래밍 문항 제작 (20문항)
+                </div>
+                <div class="btn-group">
+                    <button class="btn" onclick="toggleView('pdf1')"><i class="fa-solid fa-eye"></i> 문제 보기</button>
+                    <button class="btn" onclick="toggleView('pdf2')"><i class="fa-solid fa-check"></i> 정답/해설 보기</button>
+                    <a href="func_q.pdf" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> 새 탭 열기</a>
+                </div>
+            </div>
+            <div id="pdf1" class="preview-box"><iframe src="func_q.pdf"></iframe></div>
+            <div id="pdf2" class="preview-box"><iframe src="func_ans.pdf"></iframe></div>
+        </div>
+
+        <!-- 02. 프로그래밍 프로젝트 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span class="badge">02</span> 프로그래밍 프로젝트 (Colab 10문항)
+                </div>
+                <div class="btn-group">
+                    <button class="btn" onclick="toggleView('pdf3')"><i class="fa-solid fa-eye"></i> Colab PDF 보기</button>
+                    <a href="colab.pdf" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> 새 탭 열기</a>
+                </div>
+            </div>
+            <div id="pdf3" class="preview-box"><iframe src="colab.pdf"></iframe></div>
+        </div>
+
+        <!-- 03. 데이터 시각화 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span class="badge">03</span> 데이터 시각화 (코드 & 결과 차트)
+                </div>
+                <div class="btn-group">
+                    <button class="btn" onclick="toggleView('img1')"><i class="fa-solid fa-code"></i> 분석 코드</button>
+                    <button class="btn" onclick="toggleView('img2')"><i class="fa-solid fa-chart-pie"></i> 시각화 차트</button>
+                </div>
+            </div>
+            <div id="img1" class="preview-box"><img src="code.png" alt="분석 코드"></div>
+            <div id="img2" class="preview-box"><img src="chart.png" alt="시각화 차트"></div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleView(id) {
+            const el = document.getElementById(id);
+            const isVisible = el.style.display === 'block';
+            
+            // 다른 미리보기 창 닫기
+            document.querySelectorAll('.preview-box').forEach(box => box.style.display = 'none');
+            
+            // 토글 처리
+            if (!isVisible) {
+                el.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
